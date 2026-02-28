@@ -1,86 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JEM & MK | Wedding</title>
+    <title>Jem & MK | 14.04.2026</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --primary: #4a5d4e; /* Sage green inspired by your invitation */
+            --primary: #556b2f; /* Dark Sage */
+            --accent: #d4af37;  /* Soft Gold */
+            --pico-font-family: 'Lora', serif;
+            --header-font: 'Cinzel', serif;
         }
-        body {
-            --pico-font-family: 'Times New Roman', serif; /* Matching the classic invite style */
+
+        h1, h2, h3, .names { font-family: var(--header-font); letter-spacing: 0.15rem; }
+
+        body { background-color: #fdfcf8; }
+
+        /* Password Overlay Styles */
+        #password-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fdfcf8; z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s;
         }
-        .hero {
-            text-align: center;
-            padding: 3rem 0;
+
+        .pw-card {
+            max-width: 400px; width: 90%; padding: 3rem;
+            text-align: center; border: 1px solid #e0ddd5;
+            background: white; box-shadow: 0 20px 40px rgba(0,0,0,0.05);
         }
-        .invitation-card {
-            max-width: 600px;
-            margin: 0 auto;
-            border: 1px solid #e1e1e1;
-            padding: 2rem;
-            background: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+
+        /* Main Content Styles */
+        .hero { padding: 4rem 0; text-align: center; }
+        
+        .invitation-frame {
+            max-width: 800px; margin: 0 auto;
+            border: 2px solid var(--accent);
+            padding: 3rem; background: white;
+            position: relative; overflow: hidden;
         }
-        .date-box {
-            border-top: 1px solid #000;
-            border-bottom: 1px solid #000;
-            display: inline-block;
-            padding: 1rem 2rem;
-            margin: 1.5rem 0;
+
+        .invitation-frame::before {
+            content: ""; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid #eee; pointer-events: none;
         }
+
         .placeholder-img {
-            background-color: #f4f4f4;
-            border: 1px dashed #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 2rem;
-            min-height: 300px;
+            width: 100%; height: 350px;
+            background: #f9f9f9; border: 1px solid #f0f0f0;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 2rem; color: #999; font-style: italic;
         }
+
+        .date-divider {
+            display: flex; align-items: center; justify-content: center;
+            gap: 20px; margin: 2rem 0;
+        }
+
+        .line { height: 1px; background: var(--accent); width: 60px; }
+
+        .btn-rsvp {
+            background-color: var(--primary); border: none;
+            padding: 1rem 3rem; letter-spacing: 2px;
+        }
+
+        #pw-error { color: #8b0000; font-size: 0.8rem; margin-top: 10px; display: none; }
     </style>
 </head>
 <body>
 
+    <div id="password-overlay">
+        <article class="pw-card">
+            <h2 class="names">J & M</h2>
+            <p>Please enter your invitation password</p>
+            <input type="password" id="pw-input" placeholder="••••••••" aria-label="Password">
+            <button onclick="checkPassword()" class="btn-rsvp">ENTER SITE</button>
+            <p id="pw-error">Incorrect password. Please try again.</p>
+        </article>
+    </div>
+
     <main class="container">
         <section class="hero">
-            <header>
-                <h1 style="letter-spacing: 0.2rem;">JEM & MK</h1>
-                <p><i>invite you to join them to celebrate their marriage</i></p>
-            </header>
+            <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem;">Save the Date</p>
+            <h1 class="names" style="font-size: 3rem; margin-bottom: 0;">Jeman & MK</h1>
+            <p><i>together with their families</i></p>
 
-            <article class="invitation-card">
+            <div class="invitation-frame">
                 <div class="placeholder-img">
-                    <p>Place invitation illustration here (e.g., house-sketch.png)</p>
+                    <img src="your-illustration.png" alt="Wedding Illustration" onerror="this.style.display='none';">
+                    <span>Your Illustration Here</span>
                 </div>
 
-                <div class="date-box">
-                    <div style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1rem;">Apr</div>
-                    <div style="font-size: 2.5rem; font-weight: bold;">14</div>
-                    <div style="font-size: 1.2rem;">2026</div>
+                <h3>We are getting married!</h3>
+                
+                <div class="date-divider">
+                    <div class="line"></div>
+                    <div style="text-align: center;">
+                        <div style="font-weight: bold; font-size: 1.5rem;">APRIL 14</div>
+                        <div style="letter-spacing: 3px;">2026</div>
+                    </div>
+                    <div class="line"></div>
                 </div>
 
-                <div>
-                    <p>TUESDAY &bull; 2:00 PM</p>
-                    <hr />
-                    <address>
-                        <strong>Westsingel 43</strong><br>
-                        3811 BB Amersfoort<br>
-                        The Netherlands
-                    </address>
-                    <p><i>Reception to follow</i></p>
-                </div>
+                <address>
+                    <strong>Westsingel 43</strong><br>
+                    3811 BB Amersfoort, The Netherlands<br>
+                    <small>Ceremony starts at 2:00 PM</small>
+                </address>
 
-                <footer>
-                    <a href="YOUR_EXTERNAL_LINK_HERE" role="button" class="outline">RSVP Online</a>
+                <footer style="background: transparent; border: none; margin-top: 2rem;">
+                    <a href="https://your-external-rsvp-link.com" role="button" class="btn-rsvp">RSVP ONLINE</a>
                 </footer>
-            </article>
+            </div>
         </section>
     </main>
 
+    <script>
+        const PASS = 'tereo-14-04-2026';
+        
+        // Immediate check on load
+        if (sessionStorage.getItem('access') === 'granted') {
+            document.getElementById('password-overlay').style.display = 'none';
+        }
+
+        function checkPassword() {
+            const input = document.getElementById('pw-input').value;
+            const overlay = document.getElementById('password-overlay');
+            const error = document.getElementById('pw-error');
+
+            if (input === PASS) {
+                sessionStorage.setItem('access', 'granted');
+                overlay.style.opacity = '0';
+                setTimeout(() => overlay.style.display = 'none', 600);
+            } else {
+                error.style.display = 'block';
+                document.getElementById('pw-input').ariaInvalid = "true";
+            }
+        }
+
+        // Handle Enter Key
+        document.getElementById('pw-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkPassword();
+        });
+    </script>
 </body>
 </html>
