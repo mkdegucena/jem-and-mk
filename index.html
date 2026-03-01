@@ -8,20 +8,14 @@
     <title>JEM & MK | 14.04.2026</title>
     <meta name="title" content="JEM & MK | Wedding Celebration">
     <meta name="description" content="We invite you to join us to celebrate our marriage on April 14, 2026, in Amersfoort, The Netherlands.">
-    <meta name="keywords" content="Jem and MK, Wedding, Amersfoort, April 14 2026, Wedding Website">
+    <meta name="keywords" content="Jem and MK, Wedding, Amersfoort, April 14 2026">
     <meta name="author" content="Jem & MK">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.jemandmk.com/">
     <meta property="og:title" content="JEM & MK | Wedding Celebration">
-    <meta property="og:description" content="We invite you to join us to celebrate our marriage on April 14, 2026, in Amersfoort, The Netherlands.">
+    <meta property="og:description" content="We invite you to join us to celebrate our marriage on April 14, 2026, in Amersfoort.">
     <meta property="og:image" content="https://www.jemandmk.com/assets/town-hall-sketch.png">
-
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.jemandmk.com/">
-    <meta property="twitter:title" content="JEM & MK | Wedding Celebration">
-    <meta property="twitter:description" content="We invite you to join us to celebrate our marriage on April 14, 2026, in Amersfoort, The Netherlands.">
-    <meta property="twitter:image" content="https://www.jemandmk.com/assets/town-hall-sketch.png">
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23fdfcf8' rx='20'/><text x='50' y='65' font-family='Georgia, serif' font-size='42' font-style='italic' fill='%233d4f25' text-anchor='middle'>J%26M</text></svg>">
     
@@ -32,14 +26,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    <div class="global-palette-bar" id="c-global-palette"></div>
     <div id="loader"><p>Loading...</p></div>
     <div id="password-overlay" style="display: none;">
         <article class="pw-card">
             <h2 id="c-pw-names" style="font-size: 2rem; margin-bottom: 0;"></h2>
-            <p class="lowercase-invite" style="margin-bottom: 2rem; font-size: 1rem;">please enter your access code</p>
-            <input type="text" id="pw-input" placeholder="Password">
-            <button onclick="checkPassword()" class="btn-minimal" style="margin-top: 2rem; width: 100%;">Enter</button>
+            
+            <p class="lowercase-invite" style="margin-bottom: 1rem; font-size: 1rem;">please enter the access code</p>
+            
+            <input type="text" id="pw-input" placeholder="Access Code">
+            <button onclick="checkPassword()" class="btn-minimal" style="margin-top: 1.5rem; width: 100%;">Enter</button>
+            
+            <p style="margin-top: 1.5rem; font-size: 0.65rem; color: #646464; font-style: italic; letter-spacing: 0.5px;">
+                Access code, please don't inspect element, you might see it there. 🤫
+            </p>
         </article>
     </div>
 
@@ -52,17 +52,18 @@
                 <h1 class="names" id="c-hero-names"></h1>
                 <p class="lowercase-invite reveal delay-1" id="c-hero-invite"></p>
                 <div class="reveal delay-2" style="margin-top: 2rem;">
-                    <img id="c-hero-img" src="" alt="Illustration" style="max-width: 100%; height: auto; max-height: 60vh;" onerror="this.src='https://placehold.co/600x400/fdfcf8/3d4f25?text=Hero+Image+Missing';">
+                    <img id="c-hero-img" class="paint-image clickable-hero" src="" alt="Illustration" style="max-width: 100%; height: auto; max-height: 60vh;" data-tooltip="Click here for a secret..." data-placement="bottom" onclick="openAboutModal()" onerror="this.src='https://placehold.co/600x400/fdfcf8/3d4f25?text=Hero+Image+Missing';">
                 </div>
             </div>
             <div class="scroll-hint">SCROLL DOWN</div>
         </section>
 
         <section class="quote-section">
-            <div id="c-quote-bg" class="quote-bg"></div>
+            <div id="c-quote-bg" class="quote-bg parallax-bg"></div>
             <div class="content-box reveal">
                 <p class="quote-text" id="c-quote-text"></p>
-                <div class="reveal delay-1" style="height: 1px; width: 50px; background: var(--primary); margin: 2rem auto 0;"></div>
+                <p class="verse-text reveal delay-1" id="c-quote-verse"></p>
+                <div class="reveal delay-2" style="height: 1px; width: 50px; background: var(--primary); margin: 2rem auto 0;"></div>
             </div>
         </section>
 
@@ -116,10 +117,10 @@
                         <h4>Date</h4><p id="c-ceremony-date"></p>
                     </div>
                     <div class="event-col" style="border-left: 1px solid #eee; border-right: 1px solid #eee;">
-                        <h4>Location</h4><p><span id="c-ceremony-loc"></span><br><span style="font-size: 0.8rem; font-weight: normal; color: #666;" id="c-ceremony-addr"></span></p>
+                        <h4>Location</h4><p><span id="c-ceremony-loc"></span><br><span style="font-size: 0.8rem; font-weight: normal; color: #646464;" id="c-ceremony-addr"></span></p>
                     </div>
                     <div class="event-col">
-                        <h4>Time</h4><p><span id="c-ceremony-time"></span><br><span style="font-size: 0.8rem; font-weight: normal; color: #666;" id="c-ceremony-sub"></span></p>
+                        <h4>Time</h4><p><span id="c-ceremony-time"></span><br><span style="font-size: 0.8rem; font-weight: normal; color: #646464;" id="c-ceremony-sub"></span></p>
                     </div>
                 </div>
                 <div class="reveal delay-2 map-container">
@@ -136,18 +137,33 @@
                         <h4>Date</h4><p id="c-reception-date"></p>
                     </div>
                     <div class="event-col" style="border-left: 1px solid #eee; border-right: 1px solid #eee;">
-                        <h4>Location</h4><p><span id="c-reception-loc"></span><br><span style="font-size: 0.8rem; font-weight: normal; color: #666;" id="c-reception-addr"></span></p>
+                        <h4>Location</h4><p><span id="c-reception-loc"></span><br><span style="font-size: 0.8rem; font-weight: normal; color: #646464;" id="c-reception-addr"></span></p>
                     </div>
                     <div class="event-col">
-                        <h4>Time</h4><p><span id="c-reception-time"></span><br><span style="font-size: 0.8rem; font-weight: normal; color: #666;" id="c-reception-sub"></span></p>
+                        <h4>Time</h4><p><span id="c-reception-time"></span><br><span style="font-size: 0.8rem; font-weight: normal; color: #646464;" id="c-reception-sub"></span></p>
                     </div>
                 </div>
-                <div class="reveal delay-2 map-container" style="height: clamp(100px, 15vh, 150px); margin-bottom: 3rem;">
+                <div class="reveal delay-2 map-container" style="height: clamp(100px, 15vh, 150px);">
                     <iframe id="c-reception-map" src="" allowfullscreen="" loading="lazy"></iframe>
                 </div>
+            </div>
+        </section>
 
-                <p class="reveal delay-1" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-bottom: 0.5rem;">For Questions & Assistance</p>
-                <div class="reveal delay-1">
+        <section class="final-section">
+            <div id="c-final-bg" class="parallax-bg final-bg"></div>
+            <div class="content-box reveal">
+                <div class="contact-card reveal delay-1">
+                    <h3 style="margin-bottom: 0.2rem; color: var(--primary);">We’re so excited to celebrate with you!</h3>
+                    <p id="c-rsvp-deadline" style="font-size: 0.9rem; color: #888; margin-bottom: .5rem; font-style: italic;"></p>
+                    <div class="palette-container" id="c-palette-container" style="display: none;">
+                        <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-bottom: 0.8rem;">Our Wedding Hues</p>
+                        <div class="color-swatches" id="c-rsvp-palette"></div>
+                    </div>
+                    <a id="c-final-rsvp-btn" href="#" target="_blank" class="btn-minimal" style="margin-bottom: .5rem; width: 100%;">RSVP Now</a>
+                    
+                    <hr style="margin-bottom: 1rem; border: none; border-top: 1px solid #eee;">
+                    
+                    <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-bottom: 0.5rem;">For Questions & Assistance</p>
                     <p id="c-contact-name" style="margin-bottom: 0.2rem; font-weight: bold; color: var(--primary);"></p>
                     <a id="c-contact-email" href="" class="contact-text" style="display: block;"></a>
                     <a id="c-contact-phone" href="" class="contact-text" style="display: none;"></a>
@@ -156,7 +172,21 @@
         </section>
 
     </main>
-
+    <dialog id="about-modal">
+        <article class="modal-card">
+            <header>
+                <button aria-label="Close" rel="prev" onclick="closeAboutModal()"></button>
+                <h2 style="margin-bottom: 0; font-size: 2.5rem; text-align: center;">Our Story</h2>
+            </header>
+            
+            <div class="story-container">
+                <div class="story-image-wrapper">
+                    <img id="c-story-img" src="" alt="Jem and MK">
+                </div>
+                <div class="story-content" id="c-story-text"></div>
+            </div>
+        </article>
+    </dialog>
     <script src="script.js"></script>
 </body>
 </html>

@@ -2,9 +2,9 @@ let siteConfig = {}
 const overlay = document.getElementById('password-overlay')
 const scrollContainer = document.getElementById('main-scroll')
 const floatingBtn = document.getElementById('c-rsvp-btn')
+const aboutModal = document.getElementById('about-modal')
 let countdownInterval
 
-// --- Setup & Fetch ---
 async function loadConfig() {
 	try {
 		const response = await fetch('config.json')
@@ -19,7 +19,6 @@ async function loadConfig() {
 	}
 }
 
-// --- DOM Injection ---
 function populateContent() {
 	const combinedNames = `${siteConfig.couple.brideName} & ${siteConfig.couple.groomName}`
 	const shortNames = `${siteConfig.couple.brideName[0]} & ${siteConfig.couple.groomName[0]}`
@@ -29,7 +28,24 @@ function populateContent() {
 	document.getElementById('c-hero-invite').innerText = siteConfig.couple.inviteText
 	document.getElementById('c-hero-img').src = siteConfig.couple.heroImage
 
+	if (siteConfig.ourStory) {
+		if (siteConfig.ourStory.image) {
+			document.getElementById('c-story-img').src = siteConfig.ourStory.image
+		} else {
+			document.getElementById('c-story-img').style.display = 'none'
+		}
+
+		const storyContainer = document.getElementById('c-story-text')
+		storyContainer.innerHTML = ''
+		siteConfig.ourStory.content.forEach((paragraph) => {
+			const p = document.createElement('p')
+			p.innerHTML = paragraph
+			storyContainer.appendChild(p)
+		})
+	}
+
 	document.getElementById('c-quote-text').innerHTML = siteConfig.quote.text
+	document.getElementById('c-quote-verse').innerText = siteConfig.quote.verse
 	if (siteConfig.quote.backgroundImage) {
 		document.getElementById('c-quote-bg').style.backgroundImage = `url('${siteConfig.quote.backgroundImage}')`
 	}
@@ -58,6 +74,10 @@ function populateContent() {
 	document.getElementById('c-reception-sub').innerText = siteConfig.reception.subText
 	document.getElementById('c-reception-map').src = siteConfig.reception.mapEmbedUrl
 
+	if (siteConfig.contact.footerImage) {
+		document.getElementById('c-final-bg').style.backgroundImage = `url('${siteConfig.contact.footerImage}')`
+	}
+
 	document.getElementById('c-contact-name').innerText = siteConfig.contact.coordinatorName
 	document.getElementById('c-contact-email').innerText = siteConfig.contact.email
 	document.getElementById('c-contact-email').href = `mailto:${siteConfig.contact.email}`
@@ -70,9 +90,30 @@ function populateContent() {
 	}
 
 	floatingBtn.href = siteConfig.links.rsvpUrl
+	document.getElementById('c-final-rsvp-btn').href = siteConfig.links.rsvpUrl
+	document.getElementById('c-rsvp-deadline').innerText = siteConfig.links.rsvpDeadline
+
+	if (siteConfig.palette && siteConfig.palette.length > 0) {
+		const globalBar = document.getElementById('c-global-palette')
+		const rsvpPalette = document.getElementById('c-rsvp-palette')
+
+		document.getElementById('c-palette-container').style.display = 'block'
+
+		siteConfig.palette.forEach((item) => {
+			const barSlice = document.createElement('div')
+			barSlice.style.background = item.color
+			globalBar.appendChild(barSlice)
+
+			const swatch = document.createElement('div')
+			swatch.className = 'swatch'
+			swatch.style.background = item.color
+			swatch.setAttribute('data-tooltip', item.name)
+			swatch.setAttribute('data-placement', 'top')
+			rsvpPalette.appendChild(swatch)
+		})
+	}
 }
 
-// --- Auth ---
 function initAuth() {
 	if (sessionStorage.getItem('wedding_access') === 'true') {
 		grantAccess()
@@ -105,7 +146,6 @@ function grantAccess() {
 	}, 100)
 }
 
-// --- Observers & Animations ---
 const observer = new IntersectionObserver(
 	(entries) => {
 		entries.forEach((entry) => {
@@ -119,7 +159,6 @@ function initAnimations() {
 	document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
 }
 
-// --- Countdown ---
 function startCountdown() {
 	const target = new Date(siteConfig.countdown.targetDate).getTime()
 	countdownInterval = setInterval(() => {
@@ -138,7 +177,28 @@ function startCountdown() {
 	}, 1000)
 }
 
-// --- Listeners ---
+function openAboutModal() {
+	aboutModal.showModal()
+	document.body.style.overflow = 'hidden'
+}
+
+function closeAboutModal() {
+	aboutModal.close()
+	document.body.style.overflow = 'hidden'
+}
+
+aboutModal.addEventListener('click', (event) => {
+	const rect = aboutModal.getBoundingClientRect()
+	const isInDialog =
+		rect.top <= event.clientY &&
+		event.clientY <= rect.top + rect.height &&
+		rect.left <= event.clientX &&
+		event.clientX <= rect.left + rect.width
+	if (!isInDialog) {
+		closeAboutModal()
+	}
+})
+
 document.getElementById('pw-input').addEventListener('keypress', (e) => {
 	if (e.key === 'Enter') checkPassword()
 })

@@ -1,6 +1,6 @@
 {
   "security": {
-    "password": "tereo-14-04-2026"
+    "password": "Tereo"
   },
   "couple": {
     "brideName": "Jem",
@@ -12,16 +12,27 @@
     "inviteText": "invite you to join them to celebrate their marriage",
     "heroImage": "assets/town-hall-sketch-couple.png"
   },
+    "ourStory": {
+    "image": "assets/our-story-proposal.png",
+    "content": [
+      "We met six years ago, and from the very beginning, something just felt right.",
+      "Almost three years ago, we took a leap of faith and moved abroad together, learning, growing, and building a life side by side.",
+      "We call each other <strong>“Tereo”</strong>, a small word that carries a lot of love, laughter, and comfort. The word <em>τηρέω (tēreō)</em> means to keep, guard, observe, watch over, often with the sense of careful obedience or protection. From Matthew 28:20 <em>\"...teaching them to obey everything I have commanded you. And surely I am with you always, to the very end of the age\"</em>",
+      "We love traveling together, exploring new places, and trying different hobbies, some we’re good at, some we laugh through, but all of them we enjoy together. We serve in the same ministry, value deep friendships, and keep our people close. Our love has always been about connection, loyalty, and being each other’s safe place.",
+      "We are cycle breakers. We choose what serves us, create our own path, and build a relationship rooted in intention rather than tradition. This is us... growing, choosing each other every day, and excited for the life we’re continuing to build together."
+    ]
+  },
   "quote": {
     "text": "\"And surely I am with you always, <br>to the very end of the age...\"",
-    "backgroundImage": "assets/quote-background-blackandwhite.jpeg"
+    "verse": "Matthew 28:20",
+    "backgroundImage": "assets/quote-background-paris.png"
   },
   "countdown": {
     "targetDate": "April 14, 2026 14:00:00"
   },
   "ceremony": {
     "date": "14 Apr<br>2026",
-    "locationName": "Old Amersfoort Stadhuis",
+    "locationName": "Oude Stadhuis Amersfoort",
     "address": "Westsingel 43",
     "time": "02:00 PM",
     "subText": "Till Finish",
@@ -30,16 +41,25 @@
   "reception": {
     "date": "14 Apr<br>2026",
     "locationName": "To Be Determined",
-    "address": "Venue Address Here",
+    "address": "-",
     "time": "To Be Determined",
-    "subText": "Dinner & Dancing",
+    "subText": "-",
     "mapEmbedUrl": "https://maps.google.com/maps?q=Amersfoort&t=&z=13&ie=UTF8&iwloc=&output=embed"
   },
   "contact": {
     "coordinatorName": "Jem and MK",
-    "email": "jemandmk@gmail.com"
+    "email": "jemandmk@gmail.com",
+    "footerImage": "assets/rsvp-background-swiss.png"
   },
   "links": {
-    "rsvpUrl": "https://forms.gle/9rWoqffvN58SHzLR6"
-  }
+    "rsvpUrl": "https://forms.gle/9rWoqffvN58SHzLR6",
+    "rsvpDeadline": "RSVP Deadline: March 15, 2026"
+  },
+  "palette": [
+    { "name": "Mist", "color": "#C9C5BE" },
+    { "name": "Forest", "color": "#314216" },
+    { "name": "Rust", "color": "#7D462F" },
+    { "name": "Taupe", "color": "#A98575" },
+    { "name": "Sand", "color": "#DCD0AD" }
+  ]
 }
