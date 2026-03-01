@@ -233,7 +233,7 @@ h1, h2, h3 { color: var(--primary); font-weight: 300; text-transform: uppercase;
 @media (max-width: 768px) {
     .floating-rsvp { bottom: 20px; right: 50%; transform: translateX(50%); width: 80%; text-align: center; }
     .floating-rsvp:hover { transform: translateX(50%) translateY(-3px); }
-    .parallax-bg { background-attachment: scroll; } 
+    .parallax-bg { background-attachment: scroll; background-position-x: 75%; } 
     .story-image-wrapper { max-width: 80%; margin: 0 auto 1.5rem auto; }
     .modal-card { padding: 1.5rem !important; }
 }
