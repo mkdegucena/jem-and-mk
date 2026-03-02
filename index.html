@@ -4,21 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
     <title>JEM & MK | 14.04.2026</title>
     <meta name="title" content="JEM & MK | Wedding Celebration">
     <meta name="description" content="We invite you to join us to celebrate our marriage on April 14, 2026, in Amersfoort, The Netherlands.">
     <meta name="keywords" content="Jem and MK, Wedding, Amersfoort, April 14 2026">
     <meta name="author" content="Jem & MK">
-
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.jemandmk.com/">
     <meta property="og:title" content="JEM & MK | Wedding Celebration">
     <meta property="og:description" content="We invite you to join us to celebrate our marriage on April 14, 2026, in Amersfoort.">
     <meta property="og:image" content="https://www.jemandmk.com/assets/town-hall-sketch.png">
-
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23fdfcf8' rx='20'/><text x='50' y='65' font-family='Georgia, serif' font-size='42' font-style='italic' fill='%233d4f25' text-anchor='middle'>J%26M</text></svg>">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
@@ -31,22 +27,26 @@
     <div id="password-overlay" style="display: none;">
         <article class="pw-card">
             <h2 id="c-pw-names" style="font-size: 2rem; margin-bottom: 0;"></h2>
-            
             <p class="lowercase-invite" style="margin-bottom: 1rem; font-size: 1rem;">please enter the access code</p>
-            
             <input type="text" id="pw-input" placeholder="Access Code">
             <button onclick="checkPassword()" class="btn-minimal" style="margin-top: 1.5rem; width: 100%;">Enter</button>
-            
+            <button onclick="previewWebsite()" class="btn-preview" id="c-preview-btn">Or preview without RSVP 👀</button>
             <p style="margin-top: 1.5rem; font-size: 0.65rem; color: #646464; font-style: italic; letter-spacing: 0.5px;">
                 Access code, please don't inspect element, you might see it there. 🤫
             </p>
         </article>
     </div>
 
+    <div id="floating-countdown">
+        <div><span id="f-days">00</span><small>D</small></div>
+        <div><span id="f-hours">00</span><small>H</small></div>
+        <div><span id="f-mins">00</span><small>M</small></div>
+        <div><span id="f-secs">00</span><small>S</small></div>
+    </div>
+
     <a href="#" class="floating-rsvp" id="c-rsvp-btn" target="_blank">RSVP</a>
 
     <main class="scroll-container" id="main-scroll">
-        
         <section>
             <div class="content-box reveal">
                 <h1 class="names" id="c-hero-names"></h1>
@@ -79,9 +79,7 @@
                         <div class="portrait-name" id="c-bride-name"></div>
                         <div class="portrait-title">The Bride</div>
                     </div>
-                    
                     <div class="ampersand reveal delay-2">&</div>
-                    
                     <div class="portrait-wrapper reveal delay-1">
                         <div class="portrait" id="groom-portrait-container">
                             <img id="c-groom-img" class="img-default" src="" alt="Groom Photo" onerror="this.src='https://placehold.co/250x375/eee/aaa?text=Groom';">
@@ -94,7 +92,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="countdown-section">
             <div class="content-box reveal">
                 <h2 style="margin-bottom: 0;">Wedding Day</h2>
                 <div class="countdown-row reveal delay-1">
@@ -103,8 +101,9 @@
                     <div><div class="number" id="mins">00</div><div class="label">Mins</div></div>
                     <div><div class="number" id="secs">00</div><div class="label">Secs</div></div>
                 </div>
-                <div class="reveal delay-2" style="margin-top: 3rem;">
-                    <div style='height:1px; width:150px; background:#ccc; margin: 0 auto;'></div>
+                <div class="reveal delay-2" style="margin-top: 2rem;">
+                    <div style='height:1px; width:150px; background:#ccc; margin: 0 auto 2rem auto;'></div>
+                    <a id="c-livestream-btn" href="#" target="_blank" class="btn-minimal" style="display: none; padding: 0.5rem 2rem; font-size: 0.8rem;">Watch Livestream</a>
                 </div>
             </div>
         </section>
@@ -149,36 +148,48 @@
             </div>
         </section>
 
+        <section id="gallery-section" class="gallery-section" style="display: none;">
+            <div id="c-gallery-grid-container" class="gallery-grid-container"></div>
+            <div class="content-box reveal" style="position: relative; z-index: 2;">
+                <h2 style="color: white; text-shadow: 0 4px 15px rgba(0,0,0,0.5); margin-bottom: 0.5rem;">Gallery</h2>
+                <p style="color: #eee; text-shadow: 0 2px 10px rgba(0,0,0,0.5); font-style: italic; margin-bottom: 2.5rem;">Moments from our special day</p>
+                <a id="c-album-btn" href="#" target="_blank" class="btn-minimal btn-white" style="display: none; pointer-events: auto;">View Full Gallery</a>
+            </div>
+        </section>
+
         <section class="final-section">
             <div id="c-final-bg" class="parallax-bg final-bg"></div>
             <div class="content-box reveal">
                 <div class="contact-card reveal delay-1">
-                    <h3 style="margin-bottom: 0.2rem; color: var(--primary);">We’re so excited to celebrate with you!</h3>
-                    <p id="c-rsvp-deadline" style="font-size: 0.9rem; color: #888; margin-bottom: .5rem; font-style: italic;"></p>
+                    <div id="rsvp-block">
+                        <h3 style="margin-bottom: 0.2rem; color: var(--primary);">We’re so excited to celebrate with you!</h3>
+                        <p id="c-rsvp-deadline" style="font-size: 0.9rem; color: #888; margin-bottom: .5rem; font-style: italic;"></p>
+                        <a id="c-final-rsvp-btn" href="#" target="_blank" class="btn-minimal" style="margin-bottom: .5rem; width: 100%;">RSVP Now</a>
+                    </div>
+                    
                     <div class="palette-container" id="c-palette-container" style="display: none;">
                         <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-bottom: 0.8rem;">Our Wedding Hues</p>
                         <div class="color-swatches" id="c-rsvp-palette"></div>
                     </div>
-                    <a id="c-final-rsvp-btn" href="#" target="_blank" class="btn-minimal" style="margin-bottom: .5rem; width: 100%;">RSVP Now</a>
+
+                    <a href="#" id="c-gift-link" style="display: none; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #888; text-decoration: underline; margin-top: 0.5rem;" onclick="openGiftModal(event)">A Note on Gifts</a>
                     
-                    <hr style="margin-bottom: 1rem; border: none; border-top: 1px solid #eee;">
-                    
-                    <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-bottom: 0.5rem;">For Questions & Assistance</p>
-                    <p id="c-contact-name" style="margin-bottom: 0.2rem; font-weight: bold; color: var(--primary);"></p>
+                    <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-bottom: 0.5rem; margin-top: 1rem;">For Questions & Assistance</p>
+                    <p id="c-contact-name" style="margin-bottom: 0.2rem; font-weight: bold; color: var(--primary); display:none;"></p>
                     <a id="c-contact-email" href="" class="contact-text" style="display: block;"></a>
                     <a id="c-contact-phone" href="" class="contact-text" style="display: none;"></a>
+                    <p class="dev-credit">Design and development by mkdegucena</p>
                 </div>
             </div>
         </section>
-
     </main>
+
     <dialog id="about-modal">
         <article class="modal-card">
             <header>
                 <button aria-label="Close" rel="prev" onclick="closeAboutModal()"></button>
                 <h2 style="margin-bottom: 0; font-size: 2.5rem; text-align: center;">Our Story</h2>
             </header>
-            
             <div class="story-container">
                 <div class="story-image-wrapper">
                     <img id="c-story-img" src="" alt="Jem and MK">
@@ -187,6 +198,19 @@
             </div>
         </article>
     </dialog>
+
+    <dialog id="gift-modal">
+        <article class="modal-card" style="max-width: 600px; text-align: center;">
+            <header>
+                <button aria-label="Close" rel="prev" onclick="closeGiftModal()"></button>
+                <h2 style="margin-bottom: 0; font-size: 2rem;">Gifts</h2>
+            </header>
+            <div style="margin-top: 1.5rem;">
+                <p id="m-gift-text" style="font-size: 1.05rem; line-height: 1.8; color: #555; text-align: center;"></p>
+            </div>
+        </article>
+    </dialog>
+
     <script src="script.js"></script>
 </body>
 </html>
