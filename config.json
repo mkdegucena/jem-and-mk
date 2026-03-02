@@ -61,5 +61,8 @@
     { "name": "Rust", "color": "#7D462F" },
     { "name": "Taupe", "color": "#A98575" },
     { "name": "Sand", "color": "#DCD0AD" }
-  ]
+  ],
+  "analytics": {
+    "googleAnalyticsId": "G-C4GLL1RQTP"
+  }
 }

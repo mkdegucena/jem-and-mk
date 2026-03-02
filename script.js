@@ -11,6 +11,7 @@ async function loadConfig() {
 		siteConfig = await response.json()
 
 		populateContent()
+		initAnalytics()
 		document.getElementById('loader').style.display = 'none'
 		initAuth()
 	} catch (error) {
@@ -92,6 +93,9 @@ function populateContent() {
 	floatingBtn.href = siteConfig.links.rsvpUrl
 	document.getElementById('c-final-rsvp-btn').href = siteConfig.links.rsvpUrl
 	document.getElementById('c-rsvp-deadline').innerText = siteConfig.links.rsvpDeadline
+
+	floatingBtn.addEventListener('click', trackRSVPClick)
+	document.getElementById('c-final-rsvp-btn').addEventListener('click', trackRSVPClick)
 
 	if (siteConfig.palette && siteConfig.palette.length > 0) {
 		const globalBar = document.getElementById('c-global-palette')
@@ -204,3 +208,33 @@ document.getElementById('pw-input').addEventListener('keypress', (e) => {
 })
 
 window.addEventListener('DOMContentLoaded', loadConfig)
+
+function initAnalytics() {
+	if (siteConfig.analytics && siteConfig.analytics.googleAnalyticsId) {
+		const gaId = siteConfig.analytics.googleAnalyticsId
+
+		const scriptAsync = document.createElement('script')
+		scriptAsync.async = true
+		scriptAsync.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`
+		document.head.appendChild(scriptAsync)
+
+		const scriptInit = document.createElement('script')
+		scriptInit.innerHTML = `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${gaId}');
+        `
+		document.head.appendChild(scriptInit)
+	}
+}
+
+function trackRSVPClick() {
+	// This checks if Google Analytics is loaded, then sends a custom event
+	if (typeof gtag === 'function') {
+		gtag('event', 'rsvp_button_click', {
+			event_category: 'Engagement',
+			event_label: 'Guest Clicked RSVP',
+		})
+	}
+}
