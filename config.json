@@ -36,15 +36,17 @@
         "address": "Westsingel 43",
         "time": "02:00 PM",
         "subText": "Till Finish",
-        "mapEmbedUrl": "https://maps.google.com/maps?q=Westsingel%2043,%20Amersfoort&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        "mapEmbedUrl": "https://maps.google.com/maps?q=Westsingel%2043,%20Amersfoort&t=&z=15&ie=UTF8&iwloc=&output=embed",
+        "mapLink": "https://maps.app.goo.gl/tkmZxj98Wg1Zfp2D8"
     },
     "reception": {
         "date": "14 Apr<br>2026",
-        "locationName": "To Be Determined",
-        "address": "-",
-        "time": "To Be Determined",
-        "subText": "-",
-        "mapEmbedUrl": "https://maps.google.com/maps?q=Amersfoort&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        "locationName": "Mariënhof",
+        "address": "Kleine Haag 2, 3811 HE Amersfoort",
+        "time": "04:00 PM",
+        "subText": "Dinner, Drinks Until 08:00 PM",
+        "mapEmbedUrl": "https://maps.google.com/maps?q=Marienhof+Amersfoort&t=&z=15&ie=UTF8&iwloc=&output=embed",
+        "mapLink": "https://maps.app.goo.gl/r8UXGCBqYNi3Jv5d9"
     },
     "contact": {
         "coordinatorName": "Jem and MK",
@@ -53,7 +55,8 @@
     },
     "links": {
         "rsvpUrl": "https://forms.gle/9rWoqffvN58SHzLR6",
-        "rsvpDeadline": "RSVP Deadline: March 15, 2026",
+        "rsvpDeadline": "Please RSVP by March 15, 2026",
+        "rsvpDeadlineDate": "2026-03-16T00:00:00",
         "livestreamUrl": ""
     },
     "gallery": {

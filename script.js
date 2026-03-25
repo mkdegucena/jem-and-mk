@@ -62,14 +62,22 @@ function populateContent() {
 		document.getElementById('c-groom-hover-img').src = siteConfig.couple.groomHoverImage
 
 	document.getElementById('c-ceremony-date').innerHTML = siteConfig.ceremony.date
-	document.getElementById('c-ceremony-loc').innerText = siteConfig.ceremony.locationName
+	const cerLoc = document.getElementById('c-ceremony-loc')
+	cerLoc.innerText = siteConfig.ceremony.locationName
+	cerLoc.href =
+		siteConfig.ceremony.mapLink ||
+		`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.ceremony.locationName + ' ' + siteConfig.ceremony.address)}`
 	document.getElementById('c-ceremony-addr').innerText = siteConfig.ceremony.address
 	document.getElementById('c-ceremony-time').innerText = siteConfig.ceremony.time
 	document.getElementById('c-ceremony-sub').innerText = siteConfig.ceremony.subText
 	document.getElementById('c-ceremony-map').src = siteConfig.ceremony.mapEmbedUrl
 
 	document.getElementById('c-reception-date').innerHTML = siteConfig.reception.date
-	document.getElementById('c-reception-loc').innerText = siteConfig.reception.locationName
+	const recLoc = document.getElementById('c-reception-loc')
+	recLoc.innerText = siteConfig.reception.locationName
+	recLoc.href =
+		siteConfig.reception.mapLink ||
+		`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.reception.locationName + ' ' + siteConfig.reception.address)}`
 	document.getElementById('c-reception-addr').innerText = siteConfig.reception.address
 	document.getElementById('c-reception-time').innerText = siteConfig.reception.time
 	document.getElementById('c-reception-sub').innerText = siteConfig.reception.subText
